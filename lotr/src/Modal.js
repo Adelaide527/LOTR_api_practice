@@ -1,4 +1,5 @@
 import React from "react";
+import './modal.css';
 
 export default class Modal extends React.Component {
   constructor(props) {
@@ -10,24 +11,30 @@ export default class Modal extends React.Component {
 
   showModal = e => {
     this.setState({
-      show: true
+      show: !this.state.show
     });
   };
 
   showOurModal() {
     if(this.state.show) 
       return (
-        <ul>
-          {this.props.chapters.map((chapter) => {
-            return <li key={chapter}>{chapter.chapterName}</li>
-          })}
-        </ul>
+        <div className="modal">
+          <ul>
+            {this.props.chapters.map((chapter) => {
+              return <li key={chapter.chapterName} className="text">{chapter.chapterName}</li>
+            })}
+          </ul>
+          <button onClick={e => { this.showModal(e); }} >
+            Close
+          </button>
+        </div>
       )
     else
       return null
   }
   
   render() {
+    // console.log(this.props.name);
     return (
       <div>
         <button key={this.props.name} onClick={e => { this.showModal(); }} >
