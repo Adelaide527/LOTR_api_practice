@@ -21,7 +21,7 @@ class App extends React.Component {
         for (let i = 0; i < res.data.docs.length; i++) {
           const element = res.data.docs[i];
 
-          axios.get(url + element._id + '/chapter')
+          axios.get(url + element._id + '/chapter') // Get the chapters for each book
             .then((result) => {
               this.setState({chaps: result.data.docs})
             })
